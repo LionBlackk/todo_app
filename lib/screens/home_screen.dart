@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
+import 'package:todo_app/config/config.dart';
 import 'package:todo_app/data/data.dart';
 import 'package:todo_app/utils/utils.dart';
 import 'package:todo_app/widgets/widgets.dart';
@@ -7,7 +9,8 @@ import 'package:intl/intl.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
+  static HomeScreen builder(BuildContext context, GoRouterState state) =>
+      const HomeScreen();
   @override
   Widget build(BuildContext context) {
     final colors = context.colorSchema;
@@ -44,6 +47,7 @@ class HomeScreen extends StatelessWidget {
               top: 170,
               left: 0,
               right: 0,
+              bottom: 0,
               child: SingleChildScrollView(
                 physics: const AlwaysScrollableScrollPhysics(),
                 padding: const EdgeInsets.all(12),
@@ -88,7 +92,9 @@ class HomeScreen extends StatelessWidget {
                     ]),
                     const Gap(20),
                     ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          context.push(RoutesLocation.createTask);
+                        },
                         child: const Padding(
                           padding: EdgeInsets.all(8.0),
                           child: DisplayWhiteText(text: 'Add New Task'),

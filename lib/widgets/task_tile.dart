@@ -31,17 +31,21 @@ class TaskTile extends StatelessWidget {
                   child: Icon(task.category.icon,
                       color: task.category.color.withOpacity(iconOpacity)))),
           Expanded(
-            child: Column(
-              children: [
-                Text(task.title,
-                    style: textTheme.titleMedium?.copyWith(
-                        fontSize: 20,
-                        fontWeight: fontWeight,
-                        decoration: textDecoration)),
-                Text(task.time,
-                    style: textTheme.titleMedium
-                        ?.copyWith(decoration: textDecoration)),
-              ],
+            child: Padding(
+              padding: const EdgeInsets.only(left: 30),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(task.title,
+                      style: textTheme.titleMedium?.copyWith(
+                          fontSize: 20,
+                          fontWeight: fontWeight,
+                          decoration: textDecoration)),
+                  Text(task.time,
+                      style: textTheme.titleMedium
+                          ?.copyWith(decoration: textDecoration)),
+                ],
+              ),
             ),
           ),
           Checkbox(value: task.isCompleted, onChanged: (value) {})

@@ -14,7 +14,7 @@ class TaskDetails extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       child: Column(
         children: [
-          CircleConTainer(task: task),
+          CircleConTainer(icon: task.category.icon, color: task.category.color),
           const Gap(16),
           Text(task.title,
               style: textTheme.titleMedium
@@ -34,7 +34,6 @@ class TaskDetails extends StatelessWidget {
             thickness: 1.5,
             color: task.category.color,
           ),
-          const Gap(16),
           Text(
             task.note.isEmpty
                 ? 'There is no additional note for this task'
