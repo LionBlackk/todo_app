@@ -14,8 +14,8 @@ class DisplayListOfTasks extends StatelessWidget {
     final double height =
         isCompletedTasks ? deviceSize.height * 0.25 : deviceSize.height * 0.3;
     final String emptyTasksAlert = isCompletedTasks
-        ? 'There is no task to todo!'
-        : 'There is no completed task yet';
+        ? 'There is no completed task yet'
+        : 'There is no task to todo!';
 
     return CommonContainer(
       height: height,
