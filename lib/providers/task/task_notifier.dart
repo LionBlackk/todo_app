@@ -10,7 +10,7 @@ class TaskNotifier extends StateNotifier<TaskState> {
     getAllTasks();
   }
 
-  void addTask(Task task) async {
+  Future<void> createTask(Task task) async {
     try {
       await _repository.addTask(task);
       getAllTasks();
@@ -19,16 +19,18 @@ class TaskNotifier extends StateNotifier<TaskState> {
     }
   }
 
-  void updateTask(Task task) async {
+  Future<void> updateTask(Task task) async {
     try {
-      await _repository.updateTask(task);
+      final isCompleted = !task.isCompleted;
+      final updateTask = task.copyWith(isCompleted: isCompleted);
+      await _repository.updateTask(updateTask);
       getAllTasks();
     } catch (e) {
       debugPrint('$e');
     }
   }
 
-  void deleteTask(Task task) async {
+  Future<void> deleteTask(Task task) async {
     try {
       await _repository.deleteTask(task);
       getAllTasks();

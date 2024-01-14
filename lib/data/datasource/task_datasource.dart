@@ -46,7 +46,7 @@ class TaskDatasource {
   Future<int> addTask(Task task) async {
     final db = await database;
     return db.transaction((txn) async {
-      return await db.insert(
+      return await txn.insert(
         DBKeys.dbTable,
         Task.toMap(task),
         conflictAlgorithm: ConflictAlgorithm.replace,
@@ -57,7 +57,7 @@ class TaskDatasource {
   Future<int> updateTask(Task task) async {
     final db = await database;
     return db.transaction((txn) async {
-      return await db.update(DBKeys.dbTable, Task.toMap(task),
+      return await txn.update(DBKeys.dbTable, Task.toMap(task),
           where: 'id = ?', whereArgs: [task.id]);
     });
   }
@@ -65,7 +65,7 @@ class TaskDatasource {
   Future<int> deleteTask(Task task) async {
     final db = await database;
     return db.transaction((txn) async {
-      return await db
+      return await txn
           .delete(DBKeys.dbTable, where: 'id = ?', whereArgs: [task.id]);
     });
   }

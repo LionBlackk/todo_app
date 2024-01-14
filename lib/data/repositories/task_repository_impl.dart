@@ -15,7 +15,7 @@ class TaskRepositoryImpl implements TaskRepository {
   @override
   Future<void> deleteTask(Task task) async {
     try {
-      await _datasource.addTask(task);
+      await _datasource.deleteTask(task);
     } catch (e) {
       throw ('$e');
     }

@@ -1,4 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
+
 import 'package:todo_app/widgets/widgets.dart';
 
 class Task extends Equatable {
@@ -37,10 +39,10 @@ class Task extends Equatable {
       id: json['id'],
       title: json['title'],
       note: json['note'],
-      category: json['category'],
+      category: TaskCategory.stringToTaskCategory(json['category']),
       time: json['time'],
       date: json['date'],
-      isCompleted: json['isCompleted'],
+      isCompleted: json['isCompleted'] == 1 ? true : false,
     );
   }
 
@@ -49,10 +51,30 @@ class Task extends Equatable {
       "id": task.id,
       "title": task.title,
       "note": task.note,
-      "category": task.category,
+      "category": task.category.name,
       "time": task.time,
       "date": task.date,
-      "isCompleted": task.isCompleted
+      "isCompleted": task.isCompleted ? 1 : 0
     };
+  }
+
+  Task copyWith({
+    int? id,
+    String? title,
+    String? note,
+    TaskCategory? category,
+    String? time,
+    String? date,
+    bool? isCompleted,
+  }) {
+    return Task(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      note: note ?? this.note,
+      category: category ?? this.category,
+      time: time ?? this.time,
+      date: date ?? this.date,
+      isCompleted: isCompleted ?? this.isCompleted,
+    );
   }
 }
