@@ -3,8 +3,9 @@ import 'package:todo_app/data/data.dart';
 import 'package:todo_app/utils/extensions.dart';
 
 class TaskTile extends StatelessWidget {
-  const TaskTile({super.key, required this.task});
+  const TaskTile({super.key, required this.task, this.onCompleted});
   final Task task;
+  final Function(bool?)? onCompleted;
   @override
   Widget build(BuildContext context) {
     final textTheme = context.textTheme;
@@ -48,7 +49,7 @@ class TaskTile extends StatelessWidget {
               ),
             ),
           ),
-          Checkbox(value: task.isCompleted, onChanged: (value) {})
+          Checkbox(value: task.isCompleted, onChanged: onCompleted)
         ],
       ),
     );

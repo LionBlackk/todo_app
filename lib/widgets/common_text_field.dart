@@ -9,12 +9,14 @@ class CommonTextField extends StatelessWidget {
       this.hintText,
       this.maxLines,
       this.suffixIcon,
-      this.readOnly = false});
+      this.readOnly = false,
+      this.controller});
   final String title;
   final String? hintText;
   final int? maxLines;
   final Widget? suffixIcon;
   final bool readOnly;
+  final TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -24,6 +26,7 @@ class CommonTextField extends StatelessWidget {
         const Gap(10),
         TextField(
           readOnly: readOnly,
+          controller: controller,
           onTapOutside: (event) {
             FocusManager.instance.primaryFocus?.unfocus();
           },
